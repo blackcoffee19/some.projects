@@ -1,0 +1,29 @@
+﻿@page
+@model RazorZoo.Pages.Zoo.IndexModel
+@{
+    ViewData["Title"] = "Zoo";
+}
+<div class="jumbotron p-3 d-flex align-items-center">
+    <h1 class="display-4">Zoo</h1>
+    <a class="btn btn-sm btn-primary" style="margin: 0 20px" asp-page="./Edit">Create</a>
+</div>
+<div class="d-flex bg-primary text-white">
+    <div class="p-2" style="flex:0 0 20%">ID</div>
+    <div class="p-2" style="flex:1 0 20%">Type</div>
+    <div class="p-2" style="flex:0 0 20%">Name</div>
+    <div class="p-2" style="flex:0 0 auto">Options</div> 
+</div>
+
+@foreach(var animal in Model.Animals){
+    <div class="d-flex border-left border-right border-bottom border-primary">
+        <div class="p-2" style="flex:0 0 20%">@animal.ID</div>
+        <div class="p-2" style="flex:1 0 20%">@animal.TypeAnimal</div>
+        <div class="p-2" style="flex:0 0 20%">@animal.Name</div>
+        <form class="p-2 btn-group" style="flex:0 0 auto" role="group" method="post">
+            <a class="btn btn-primary btn-sm" asp-page="./Detail" asp-route-id="@animal.ID">Detail</a>
+            <a class="btn btn-primary btn-sm" asp-page="./Edit" asp-route-id="@animal.ID">Edit</a>
+            <input type="submit" value="Delete" class="btn btn-danger btn-sm"/>
+            <input type="hidden" name="ID" value="@animal.ID"/>
+        </form>
+    </div>
+}

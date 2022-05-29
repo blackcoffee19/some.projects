@@ -1,0 +1,11 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to RazorZoo!</h1>
+    <a asp-page="./Zoo/Index" class="btn btn-sm btn-primary">Go to the zoo</a>
+    <a asp-page="./AnimalsSick/Index" class="btn btn-sm btn-primary">Visit Zoo's hospital</a>
+</div>

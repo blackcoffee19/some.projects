@@ -1,0 +1,17 @@
+@page "{id?}"
+@model DetailModel
+<div class="jumbotron p-3 flex align-items-center">
+    <h1 class="display-4">Detail</h1>
+    <a class="btn btn-sm btn-primary" asp-page="./Edit" style="float:right">Edit</a>
+</div>
+<div class="container">
+    <h3>@Model.Animal.Name</h3>
+    <h4>@Model.Animal.TypeAnimal</h4>
+    @if(Model.Animal.Gender == "female"){
+        <p>Her age: @Model.Animal.Age</p>
+    } else {
+        <p>His age: @Model.Animal.Age</p>
+    }
+    <p>Gender: @Model.Animal.Gender</p>
+    <p>ID: @Model.Animal.ID</p>
+</div>
