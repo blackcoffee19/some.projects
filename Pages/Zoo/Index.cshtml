@@ -3,15 +3,29 @@
 @{
     ViewData["Title"] = "Zoo";
 }
-<div class="jumbotron p-3 d-flex align-items-center">
+<div class="jumbotron d-flex align-items-center p-2 bd-highlight">
     <h1 class="display-4">Zoo</h1>
     <a class="btn btn-sm btn-primary" style="margin: 0 20px" asp-page="./Edit">Create</a>
 </div>
+<form class="form-group d-flex bd-highlight mb-3">
+    <input class="p-2 mr-auto" type="text" asp-for="SearchString" />
+    <input class="p-2" type="submit" value="Search" class="btn btn-primary btn-sm"/>
+    <select class="ml-auto p-2 bd-hightlight" asp-for="SortField" onchange="this.form.submit()">
+        <option value="ID">ID</option>
+        <option value="Name">Name</option>
+        <option value="Type">Type of animal</option>
+    </select>
+    <label class="control-label" asp-for="SelectAnimal">Type of animail: </label>
+    <select class="p-2" asp-for="SelectAnimal" asp-items="Model.selectType" onchange="this.form.submit();">
+        <option value="">All</option>
+    </select>
+</form>
+
 <div class="d-flex bg-primary text-white">
     <div class="p-2" style="flex:0 0 20%">ID</div>
     <div class="p-2" style="flex:1 0 20%">Type</div>
     <div class="p-2" style="flex:0 0 20%">Name</div>
-    <div class="p-2" style="flex:0 0 auto">Options</div> 
+    <div class="p-2" style="flex:0 0 25%">Options</div> 
 </div>
 
 @foreach(var animal in Model.Animals){
@@ -19,7 +33,7 @@
         <div class="p-2" style="flex:0 0 20%">@animal.ID</div>
         <div class="p-2" style="flex:1 0 20%">@animal.TypeAnimal</div>
         <div class="p-2" style="flex:0 0 20%">@animal.Name</div>
-        <form class="p-2 btn-group" style="flex:0 0 auto" role="group" method="post">
+        <form class="p-2 btn-group" style="flex:0 0 25%" role="group" method="post">
             <a class="btn btn-primary btn-sm" asp-page="./Detail" asp-route-id="@animal.ID">Detail</a>
             <a class="btn btn-primary btn-sm" asp-page="./Edit" asp-route-id="@animal.ID">Edit</a>
             <input type="submit" value="Delete" class="btn btn-danger btn-sm"/>

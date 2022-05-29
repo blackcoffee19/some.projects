@@ -1,4 +1,6 @@
 using RazorZoo.Data;
+using System.Linq;
+using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,7 +24,7 @@ using (var scope = app.Services.CreateScope()){
     var services = scope.ServiceProvider;
 
     var context = services.GetRequiredService<ZooContext>();
-    context.Database.EnsureCreated();
+    //context.Database.EnsureCreated();
     DbInitializer.Initialize(context);
 }
 
