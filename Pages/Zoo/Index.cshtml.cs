@@ -28,17 +28,17 @@ namespace RazorZoo.Pages.Zoo
         public string? SortField {get;set;}
 
         //property for Select list
+        public List<Animal> Animals {get;set;}
+        public SelectList selectType {get;set;}
         [BindProperty(SupportsGet = true)]
         public string SelectAnimal {get;set;}
-        public SelectList selectType {get;set;}
-        public List<Animal>? Animals {get;set;}
 
         public async Task OnGetAsync()
         {
             var animals = from ani in _context.Animals
                 select ani;
             //for SelectBox
-            switch(SortField){
+            /*switch(SortField){
                 case "ID":
                     animals = animals.OrderBy(c => c.ID);
                     break;
@@ -52,8 +52,8 @@ namespace RazorZoo.Pages.Zoo
             //for Sreach bar
             if(!string.IsNullOrEmpty(SearchString)){
                 animals = animals.Where(c => c.Name.Contains(SearchString));
-            };
-            //for Select box
+            };*/
+            //For Select box
             if(!string.IsNullOrEmpty(SelectAnimal)){
                 animals = animals.Where(c => c.TypeAnimal == SelectAnimal);
             };

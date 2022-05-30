@@ -1,25 +1,26 @@
 @model RazorZoo.Pages.Zoo.EditModel
+
 <div class="col">
     <form method="post">
         <div class="form-group">
-            <label for="Animal.ID" class="form-label">ID</label>
-            <input type="text" class="form-control" asp-for="Animal.ID" placeholder="What kind of animal?"/>
+            <label for="Animal1.ID" class="form-label">ID</label>
+            <input type="text" class="form-control" asp-for="Animal1.ID" placeholder="What kind of animal?"/>
         </div>
         <div class="form-group">
-            <label for="Animal.TypeAnimal" class="form-label" style="margin-top:10px;">Type of Animal</label>
-            <input type="text" class="form-control" asp-for="Animal.TypeAnimal" placeholder="What kind of animal?"/>
+            <label for="Animal1.TypeAnimal" class="form-label" style="margin-top:10px;">Type of Animal</label>
+            <select asp-for="Animal1.TypeAnimal" class="form-control" asp-items="Model.SelectAnimals"></select>
         </div>
         <div class="form-group">
-            <label for="Animal.Name" class="form-label" style="margin-top:10px;">Animal's Name</label>
-            <input type="text" class="form-control" asp-for="Animal.Name" placeholder="What's it name?"/>
+            <label for="Animal1.Name" class="form-label" style="margin-top:10px;">Animal's Name</label>
+            <input type="text" class="form-control" asp-for="Animal1.Name" placeholder="What's it name?"/>
         </div>
         <div class="form-group">
-            <label for="Animal.Age" class="form-label" style="margin-top:10px;">Animal's age</label>
-            <input type="text" class="form-control" asp-for="Animal.Age" placeholder="What's it age'?"/>
+            <label for="Animal1.Age" class="form-label" style="margin-top:10px;">Animal's age</label>
+            <input type="text" class="form-control" asp-for="Animal1.Age" placeholder="What's it age'?"/>
         </div>
         <div class="form-group">
-            <label for="Animal.Gender" class="form-label" style="margin-top:10px;">Animal's gender</label>
-            <input type="text" class="form-control" asp-for="Animal.Gender"/>
+            <label for="Animal1.Gender" class="form-label" style="margin-top:10px;">Animal's gender</label>
+            <input type="text" class="form-control" asp-for="Animal1.Gender"/>
         </div>
         <button type="submit" class="btn btn-info" value="Save" id="submit" style="margin-top:20px;">Submit</button>
     </form>

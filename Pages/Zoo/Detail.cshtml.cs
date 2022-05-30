@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using RazorZoo.Models;
 using RazorZoo.Data;
+using System.Collections.Generic;
+
 
 namespace RazorZoo.Pages.Zoo
 {

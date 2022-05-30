@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using RazorZoo.Models;
 using RazorZoo.Data;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Linq;
 
 namespace RazorZoo.Pages.Zoo
 {
@@ -16,13 +18,16 @@ namespace RazorZoo.Pages.Zoo
             _context = context;
         }
         [BindProperty]
-        public Animal Animal {get;set;}
+        public Animal? Animal1 {get;set;}
+        //Select List
+        public SelectList SelectAnimals {get;set;}
         public async Task<IActionResult> OnGetAsync(int? id){
             if(id == null){
-                Animal = new Animal();
+                Animal1 = new Animal();
             } else {
-                Animal = await _context.Animals.FindAsync(id);
-                if(Animal == null){
+                Animal1 = await _context.Animals.FindAsync(id);
+                SelectAnimals = new SelectList(_context.Animals, nameof(Animal.TypeAnimal));
+                if(Animal1 == null){
                     return NotFound();
                 };
             }
@@ -33,9 +38,9 @@ namespace RazorZoo.Pages.Zoo
                 return Page();
             };
             if(id == null){
-                _context.Animals.Add(Animal).State = EntityState.Modified;
+                _context.Animals.Add(Animal1).State = EntityState.Modified;
             } else {
-                _context.Attach(Animal).State = EntityState.Modified;
+                _context.Attach(Animal1).State = EntityState.Modified;
             }
             await _context.SaveChangesAsync();
             return RedirectToPage("./Index");
