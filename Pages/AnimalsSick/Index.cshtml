@@ -5,13 +5,26 @@
 }
 <div class="jumbotron">
     <h1 class="text-center">Cages</h1>
-    <h3 > Cages containts animals sick</h3>
+    <p> Cages containts animals sick</p>
     <a class="btn btn-sm btn-primary" asp-page="./Edit"> Edit</a>
 </div>
+<form class="form-group"></form>
 <div class="d-flex bg-primary text-white">
-    <div class="p-2" style="flex:0 0 10%">ID</div>
+    <div class="p-2" style="flex:0 0 20%">ID</div>
     <div class="p-2" style="flex:1 0 20%">Type</div>
-    <div class="p-2" style="flex:0 0 auto">Name</div> 
-    <div class="p-2" style="flex:1 0 20%">Gender</div>
+    <div class="p-2" style="flex:1 0 auto">Name</div> 
+    <div class="p-2" style="flex:0 0 25%">Options</div>
 </div>
-<div></div>
+@foreach(var animal in Model.Cages) {
+    <div class="d-flex border-left border-right border-bottom border-primary">
+        <div class="p-2" style="flex:0 0 20%">@animal.CageID</div>
+        <div class="p-2" style="flex:1 0 20%">@animal.TypeAnimal</div>
+        <div class="p-2" style="flex:1 0 auto">@animal.Name</div>
+        <form class="p-2 btn-group" style="flex:0 0 25%" role="group" method="post">
+            <a class="btn btn-primary btn-sm" asp-page="./Detail" asp-route-id="@animal.CageID">Detail</a>
+            <a class="btn btn-primary btn-sm" asp-page="./Edit" asp-route-id="@animal.CageID">Edit</a>
+            <input type="submit" value="Delete" class="btn btn-danger btn-sm"/>
+            <input type="hidden" name="CageID" value="@animal.CageID"/>
+        </form>
+    </div>
+}

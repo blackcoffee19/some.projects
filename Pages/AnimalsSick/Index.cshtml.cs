@@ -11,15 +11,28 @@ namespace RazorZoo.Pages.AnimalsSick;
 
 public class IndexModel : PageModel
 {
-    private readonly ILogger<IndexModel> _logger;
+    private readonly ZooContext _context;
 
-    public IndexModel(ILogger<IndexModel> logger)
+    public IndexModel(ZooContext context)
     {
-        _logger = logger;
+        _context = context;
     }
-
-    public void OnGet()
+    public List<Cage> Cages {get;set;}
+    
+    public async Task OnGetAsync()
     {
+        Cages = await _context.Cages.ToListAsync();
+    }
+    public async Task<IActionResult> OnPostAsync(string id){
+        if (id == null){
+            return NotFound();
+        }
 
+        Cage? Cage =  await _context.Cages.FindAsync(id);
+        if(Cage != null){
+            _context.Cages.Remove(Cage);
+        }
+        await _context.SaveChangesAsync();
+        return RedirectToPage("./Index");
     }
 }

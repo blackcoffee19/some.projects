@@ -15,21 +15,19 @@ namespace RazorZoo.Data
 
             var Cages = new Cage[]
             {
-                new Cage{ID=1,TypeAnimal="Tiger",Name="Yang"},
-                new Cage{ID=2,TypeAnimal="Wolf",Name="DiDi"},
-                new Cage{ID=3,TypeAnimal="Monkey",Name="Lith"},
-                new Cage{ID=4,TypeAnimal="Panda",Name="LeeMei"},
-                new Cage{ID=5,TypeAnimal="Lion",Name="Siba"},
-                new Cage{ID=6,TypeAnimal="Crocodie",Name="Draco"},
-                new Cage{ID=7,TypeAnimal="Elephant",Name="Mamba"},
-                new Cage{ID=8,TypeAnimal="Leopard",Name="Berme"}
+                new Cage{CageID=1,TypeAnimal="Tiger",Name="Yang"},
+                new Cage{CageID=2,TypeAnimal="Wolf",Name="DiDi"},
+                new Cage{CageID=3,TypeAnimal="Monkey",Name="Lith"},
+                new Cage{CageID=4,TypeAnimal="Panda",Name="LeeMei"},
+                new Cage{CageID=5,TypeAnimal="Lion",Name="Siba"},
+                new Cage{CageID=6,TypeAnimal="Crocodie",Name="Draco"},
+                new Cage{CageID=7,TypeAnimal="Elephant",Name="Mamba"},
+                new Cage{CageID=8,TypeAnimal="Leopard",Name="Berme"}
             };
             foreach ( Cage s in Cages)
             {
                 context.Cages.Add(s);
             };
-            context.SaveChanges();
-
             var Animals = new Animal[]
             {
                 new Animal{ID=10100,TypeAnimal="Tiger",Name="Yang",Age=4,Gender="female"},
@@ -56,8 +54,7 @@ namespace RazorZoo.Data
             foreach(Animal x in Animals){
                 context.Animals.Add(x);
             };
-            context.SaveChanges();
-            
+            context.SaveChanges(true);
         }
     }
 }

@@ -20,13 +20,18 @@ namespace RazorZoo.Pages.Zoo
         [BindProperty]
         public Animal Animal{get;set;}
         public async Task<IActionResult> OnGetAsync(int? id){
-            if(id == null){
+            var animal = from a in _context.Animals
+                where a.ID == id
+                select new Animal {
+                    ID = a.ID,
+                    TypeAnimal = a.TypeAnimal,
+                    Name = a.Name,
+                    Age = a.Age,
+                    Gender = a.Gender
+                };
+            Animal = await animal.SingleOrDefaultAsync();
+            if(Animal ==null){
                 return NotFound();
-            } else{
-                Animal = await _context.Animals.FindAsync(id);
-                if( Animal == null){
-                    return NotFound();
-                }
             };
             return Page();
 
